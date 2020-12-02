@@ -40,7 +40,7 @@ const Player = ({
 				<p>{getFormatedTime(songInfo.currentTime)}</p>
 				<input
 					min={0}
-					max={setSongInfo.duration}
+					max={setSongInfo.duration ? setSongInfo.duration : 0}
 					value={songInfo.currentTime}
 					onChange={dragHandler}
 					type='range'
