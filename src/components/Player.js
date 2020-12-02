@@ -7,10 +7,14 @@ import {
 	faPauseCircle,
 } from '@fortawesome/free-solid-svg-icons'
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-	// Ref
-	const audioRef = useRef(null)
-
+const Player = ({
+	audioRef,
+	currentSong,
+	isPlaying,
+	setIsPlaying,
+	songInfo,
+	setSongInfo,
+}) => {
 	// Event Handlers
 	const playSongHandler = () => {
 		// Note: useRef grabs HTML element by reference, replacing document.queryselector
@@ -22,11 +26,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 			setIsPlaying(!isPlaying)
 		}
 	}
-	const timeUpdateHandler = (e) => {
-		const current = e.target.currentTime
-		const duration = e.target.duration
-		setSongInfo({ ...songInfo, currentTime: current, duration })
-	}
+
 	const getFormatedTime = (time) => {
 		return Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
 	}
@@ -34,12 +34,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 		audioRef.current.currentTime = e.target.value
 		setSongInfo({ ...songInfo, currentTime: e.target.value })
 	}
-
-	// State
-	const [songInfo, setSongInfo] = useState({
-		currentTime: 0,
-		duraction: 0,
-	})
 	return (
 		<div className='player'>
 			<div className='time-control'>
@@ -71,12 +65,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 					icon={faAngleDoubleRight}
 				/>
 			</div>
-			<audio
-				onTimeUpdate={timeUpdateHandler}
-				onLoadedMetadata={timeUpdateHandler}
-				ref={audioRef}
-				src={currentSong.audio}
-			></audio>
 		</div>
 	)
 }
