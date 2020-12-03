@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faAngleDoubleRight,
@@ -15,8 +15,37 @@ const Player = ({
 	songInfo,
 	setSongInfo,
 	songs,
+	setSongs,
 	setCurrentSong,
 }) => {
+	// UseEffect
+	useEffect(() => {
+		const newSongs = songs.map((song) => {
+			if (song.id === currentSong.id) {
+				return {
+					...song,
+					active: true,
+				}
+			} else {
+				return {
+					...song,
+					active: false,
+				}
+			}
+		})
+		setSongs(newSongs)
+		// Play once audio is loaded
+		if (isPlaying) {
+			const playPromise = audioRef.current.play()
+			if (playPromise !== undefined) {
+				playPromise.then((audio) => {
+					audioRef.current.play()
+				})
+			}
+		}
+
+		// Run everytime currentSong is updated
+	}, [currentSong])
 	// Event Handlers
 	const playSongHandler = () => {
 		// Note: useRef grabs HTML element by reference, replacing document.queryselector
