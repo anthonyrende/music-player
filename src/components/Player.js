@@ -6,6 +6,7 @@ import {
 	faPlayCircle,
 	faPauseCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import { playAudio } from '../util'
 
 const Player = ({
 	audioRef,
@@ -75,10 +76,12 @@ const Player = ({
 			// Go to last song in array, if we hit -1
 			if ((currentIndex - 1) % songs.length === -1) {
 				setCurrentSong(songs[songs.length - 1])
+				playAudio(isPlaying, audioRef)
 				return
 			}
 			setCurrentSong(songs[(currentIndex - 1) % songs.length])
 		}
+		playAudio(isPlaying, audioRef)
 	}
 	return (
 		<div className='player'>
@@ -91,7 +94,7 @@ const Player = ({
 					onChange={dragHandler}
 					type='range'
 				/>
-				<p>{getFormatedTime(songInfo.duration)}</p>
+				<p>{songInfo.duration ? getFormatedTime(songInfo.duration) : '0:00'}</p>
 			</div>
 			<div className='play-control'>
 				<FontAwesomeIcon
