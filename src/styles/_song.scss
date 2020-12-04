@@ -10,6 +10,15 @@
 		border-color: black;
 		// border: 0.2rem solid rgb(0, 0, 0);
 		box-shadow: 0 0 0 0.2rem #c4c4c4;
+		transition: 0.2s ease-in;
+		&:hover {
+			// width: 21%;
+			border-radius: 10%;
+			border: 2px solid rgb(0, 0, 0);
+			// transition: all 0.3s ease;
+			transition: 500ms ease-out;
+			// transition: 0.2s ease-in;
+		}
 	}
 	h2 {
 		padding: 3rem 1rem 1rem 1rem;

@@ -33,7 +33,7 @@ const Player = ({
 					active: false,
 				}
 			}
-		})
+		}, [])
 		setSongs(newSongs)
 		// Play once audio is loaded
 		if (isPlaying) {
@@ -66,11 +66,11 @@ const Player = ({
 		audioRef.current.currentTime = e.target.value
 		setSongInfo({ ...songInfo, currentTime: e.target.value })
 	}
-	const skipTrackHandler = (direction) => {
+	const skipTrackHandler = async (direction) => {
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id)
 		if (direction === 'skip-forward') {
 			// Modulus loops to 0 when currentIndex % songs.length
-			setCurrentSong(songs[(currentIndex + 1) % songs.length])
+			await setCurrentSong(songs[(currentIndex + 1) % songs.length])
 		}
 		if (direction === 'skip-back') {
 			// Go to last song in array, if we hit -1
@@ -81,9 +81,9 @@ const Player = ({
 			}
 			setCurrentSong(songs[(currentIndex - 1) % songs.length])
 		}
-		playAudio(isPlaying, audioRef)
+		if (isPlaying) audioRef.current.play()
 	}
-
+	// const onEndedHandler = () => if skipTrackHandler("skip-forward")
 	return (
 		<div className='player'>
 			<div className='time-control'>
