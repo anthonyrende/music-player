@@ -6,19 +6,22 @@
 	justify-content: space-between;
 }
 .time-control {
+	padding-top: 0.5rem;
 	width: 50%;
 	display: flex;
 	align-items: center;
 	input {
 		width: 100%;
-		padding: 1rem 0rem;
 		-webkit-appearance: none;
 		background: transparent;
 		cursor: pointer;
 	}
-	p {
-		padding: 1rem;
-	}
+}
+.time {
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	font-size: 0.8rem;
+	padding: 0.6rem;
 }
 
 .play-control {
@@ -37,19 +40,32 @@
 input[type='range']:focus {
 	outline: none;
 }
-// input[type='range']::-webkit-slider-thumb {
-// 	-webkit-appearance: none;
-// 	height: 16px;
-// 	width: 16px;
-// }
+
+input[type='range']::-webkit-slider-thumb {
+	// -webkit-appearance: none;
+	-webkit-appearance: none;
+	border: 1.2px solid #000000;
+	border-top: none;
+	border-left: none;
+	height: 1.5rem;
+	width: 1.5rem;
+	overflow: visible;
+	border-radius: 50%;
+	background-color: #bdd4e7;
+	// background-image: linear-gradient(315deg, #7b88a0 0%, #bdd4e7 74%);
+	background-image: url(../sliderthumb.svg);
+
+	cursor: pointer;
+	margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+	box-shadow: 1px 1px 2px #000000, 0px 0px 0.5px #0d0d0d; /* Add cool effects to your sliders! */
+}
 
 .track {
-	background: lightblue;
 	width: 100%;
 	height: 1rem;
 	position: relative;
+	// overflow: hidden;
 	border-radius: 1rem;
-	overflow: hidden;
 }
 .animate-track {
 	background: rgg(204, 204, 204);

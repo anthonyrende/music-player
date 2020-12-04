@@ -87,7 +87,7 @@ const Player = ({
 	return (
 		<div className='player'>
 			<div className='time-control'>
-				<p>{getFormatedTime(songInfo.currentTime)}</p>
+				<p className='time'>{getFormatedTime(songInfo.currentTime)}</p>
 				<div
 					style={{
 						background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
@@ -95,11 +95,11 @@ const Player = ({
 					className='track'
 				>
 					<input
-						min={0}
-						max={setSongInfo.duration || 0}
 						value={songInfo.currentTime}
-						onChange={dragHandler}
 						type='range'
+						max={songInfo.duration || 0}
+						min={0}
+						onChange={dragHandler}
 					/>
 					<div
 						// Animation percentage styles
@@ -111,7 +111,9 @@ const Player = ({
 						className='animate-track'
 					></div>
 				</div>
-				<p>{songInfo.duration ? getFormatedTime(songInfo.duration) : '0:00'}</p>
+				<p className='time'>
+					{songInfo.duration ? getFormatedTime(songInfo.duration) : '0:00'}
+				</p>
 			</div>
 			<div className='play-control'>
 				<FontAwesomeIcon
