@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faAngleDoubleRight,
@@ -83,17 +83,34 @@ const Player = ({
 		}
 		playAudio(isPlaying, audioRef)
 	}
+
 	return (
 		<div className='player'>
 			<div className='time-control'>
 				<p>{getFormatedTime(songInfo.currentTime)}</p>
-				<input
-					min={0}
-					max={setSongInfo.duration ? setSongInfo.duration : 0}
-					value={songInfo.currentTime}
-					onChange={dragHandler}
-					type='range'
-				/>
+				<div
+					style={{
+						background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+					}}
+					className='track'
+				>
+					<input
+						min={0}
+						max={setSongInfo.duration || 0}
+						value={songInfo.currentTime}
+						onChange={dragHandler}
+						type='range'
+					/>
+					<div
+						// Animation percentage styles
+						style={{
+							transform: `translateX(${(songInfo.currentTime /
+								songInfo.duration) *
+								100}%)`,
+						}}
+						className='animate-track'
+					></div>
+				</div>
 				<p>{songInfo.duration ? getFormatedTime(songInfo.duration) : '0:00'}</p>
 			</div>
 			<div className='play-control'>

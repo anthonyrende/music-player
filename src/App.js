@@ -22,13 +22,24 @@ function App() {
 	const [songInfo, setSongInfo] = useState({
 		currentTime: 0,
 		duraction: 0,
+		animationPercentage: 0,
 	})
 	const [libraryStatus, setLibraryStatus] = useState(false)
 	// Util
 	const timeUpdateHandler = (e) => {
 		const current = e.target.currentTime
 		const duration = e.target.duration
-		setSongInfo({ ...songInfo, currentTime: current, duration })
+		// Calculate percentage input slider
+		const roundedCurrent = Math.round(current)
+		const roundedDuration = Math.round(current)
+		const animationPercentage = Math.round(
+			(roundedCurrent / roundedDuration) * 100
+		)
+		setSongInfo({
+			...songInfo,
+			currentTime: current,
+			duration,
+		})
 	}
 	return (
 		<div className='App'>
