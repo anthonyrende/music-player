@@ -102,7 +102,7 @@ const Player = ({
 						onChange={dragHandler}
 					/>
 					<div
-						// Animation percentage styles
+						// Animation slider percentage
 						style={{
 							transform: `translateX(${(songInfo.currentTime /
 								songInfo.duration) *
