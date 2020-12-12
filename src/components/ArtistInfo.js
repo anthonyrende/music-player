@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
 import Info from './Info'
 
-const ArtistInfo = ({ songs, currentSong, artistInfoStatus }) => {
+const ArtistInfo = ({
+	songs,
+	currentSong,
+	artistInfoStatus,
+	setArtistInfoStatus,
+}) => {
 	return (
 		<div
 			className={`artist-info-container ${
 				artistInfoStatus ? 'active-info' : ''
 			}`}
 		>
-			<h2>Artist Info</h2>
-			<Info currentSong={currentSong} />
+			<Info
+				currentSong={currentSong}
+				artistInfoStatus={artistInfoStatus}
+				setArtistInfoStatus={setArtistInfoStatus}
+			/>
 		</div>
 	)
 }

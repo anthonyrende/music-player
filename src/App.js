@@ -8,6 +8,7 @@ import Player from './components/Player'
 import Song from './components/Song'
 import Library from './components/Library.js'
 import Nav from './components/Nav'
+import ArtistInfo from './components/ArtistInfo'
 
 // Util
 import data from './data.js'
@@ -26,6 +27,8 @@ function App() {
 		animationPercentage: 0,
 	})
 	const [libraryStatus, setLibraryStatus] = useState(false)
+	const [artistInfoStatus, setArtistInfoStatus] = useState(false)
+
 	// Util
 	const timeUpdateHandler = (e) => {
 		const current = e.target.currentTime
@@ -48,10 +51,26 @@ function App() {
 		playAudio(isPlaying, audioRef)
 		return
 	}
+	const containerHandlers = () => {
+		if (libraryStatus && artistInfoStatus) {
+			return 'library-and-info-active'
+		}
+		if (libraryStatus) {
+			return 'library-active'
+		} else if (artistInfoStatus) {
+			return 'info-active'
+		} else {
+			return ''
+		}
+	}
 	return (
-		<div className={`App ${libraryStatus ? 'library-active' : ''}`}>
+		<div className={`App ${containerHandlers()}`}>
 			<Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
-			<Song currentSong={currentSong} />
+			<Song
+				currentSong={currentSong}
+				artistInfoStatus={artistInfoStatus}
+				setArtistInfoStatus={setArtistInfoStatus}
+			/>
 			<Player
 				setSongInfo={setSongInfo}
 				songInfo={songInfo}
@@ -70,6 +89,11 @@ function App() {
 				isPlaying={isPlaying}
 				setSongs={setSongs}
 				libraryStatus={libraryStatus}
+			/>
+			<ArtistInfo
+				artistInfoStatus={artistInfoStatus}
+				setArtistInfoStatus={setArtistInfoStatus}
+				currentSong={currentSong}
 			/>
 			<audio
 				onTimeUpdate={timeUpdateHandler}

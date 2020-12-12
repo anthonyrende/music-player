@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 // Images
 import Spotify from '../assets/media/spotify.svg'
@@ -6,14 +8,24 @@ import AppleMusic from '../assets/media/apple-music.svg'
 import Bandcamp from '../assets/media/bandcamp.svg'
 import Youtube from '../assets/media/youtube.svg'
 
-const Info = ({ currentSong }) => {
+const Info = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
 	return (
-		<div className='info-container'>
-			<div className='artist-info'>
-				<p>{currentSong.aboutAlbum}</p>
+		<>
+			<div className='info-container'>
+				<div className='artist-info'>
+					<FontAwesomeIcon
+						onClick={() => setArtistInfoStatus(!artistInfoStatus)}
+						className='close-info'
+						size='2x'
+						icon={faTimes}
+					/>
+					<h2>Artist Info</h2>
+					<p>{currentSong.aboutAlbum}</p>
+				</div>
 			</div>
-			<h2>Available On</h2>
 			<div className='media-container'>
+				<h2>Available On</h2>
+
 				<a href={currentSong.linksToArtist.spotify} target='_blank'>
 					<img src={Spotify} />
 				</a>
@@ -27,7 +39,7 @@ const Info = ({ currentSong }) => {
 					<img src={Youtube} />
 				</a>
 			</div>
-		</div>
+		</>
 	)
 }
 
