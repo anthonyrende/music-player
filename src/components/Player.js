@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faAngleDoubleRight,
@@ -19,10 +19,9 @@ const Player = ({
 	setSongs,
 	setCurrentSong,
 }) => {
-	// UseEffect
-	useEffect(() => {
+	const activeLibraryHandler = (nextOrPrev) => {
 		const newSongs = songs.map((song) => {
-			if (song.id === currentSong.id) {
+			if (song.id === nextOrPrev.id) {
 				return {
 					...song,
 					active: true,
@@ -33,20 +32,19 @@ const Player = ({
 					active: false,
 				}
 			}
-		}, [])
-		setSongs(newSongs)
-		// Play once audio is loaded
-		if (isPlaying) {
-			const playPromise = audioRef.current.play()
-			if (playPromise !== undefined) {
-				playPromise.then((audio) => {
-					audioRef.current.play()
-				})
-			}
-		}
+		})
+	}
 
-		// Run everytime currentSong is updated
-	}, [currentSong])
+	// Play once audio is loaded
+	if (isPlaying) {
+		const playPromise = audioRef.current.play()
+		if (playPromise !== undefined) {
+			playPromise.then((audio) => {
+				audioRef.current.play()
+			})
+		}
+	}
+
 	// Event Handlers
 	const playSongHandler = () => {
 		// Note: useRef grabs HTML element by reference, replacing document.queryselector
@@ -71,6 +69,7 @@ const Player = ({
 		if (direction === 'skip-forward') {
 			// Modulus loops to 0 when currentIndex % songs.length
 			await setCurrentSong(songs[(currentIndex + 1) % songs.length])
+			activeLibraryHandler(songs[(currentIndex + 1) % songs.length])
 		}
 		if (direction === 'skip-back') {
 			// Go to last song in array, if we hit -1

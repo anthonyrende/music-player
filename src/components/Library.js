@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import LibrarySong from './LibrarySong'
 
 const Library = ({
@@ -11,7 +11,9 @@ const Library = ({
 }) => {
 	return (
 		<div className={`library ${libraryStatus ? 'active-library' : ''}`}>
-			<h2>Library</h2>
+			<header>
+				<h2>Library</h2>
+			</header>
 			<div className='library-songs'>
 				{songs.map((song) => (
 					<LibrarySong
