@@ -1,3 +1,11 @@
+## Work in Progress :rocket:
+![Music Player Preview](https://i.ibb.co/qNVs6MP/chillhopplayer.png)
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
