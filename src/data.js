@@ -16,7 +16,7 @@ function chillHop() {
 				bandcamp: 'https://chillhop.ffm.to/canaryforest.owe/bandcamp',
 				youtube: 'https://chillhop.ffm.to/canaryforest.owe/youtube',
 			},
-			aboutArtist:
+			aboutAlbum:
 				'At the beginning of the year, producers Aso, Aviino, and Middle School visited The Netherlands and created a number of songs while in Rotterdam. Some in our studio, others in the trio’s haunted houseboat hotel. The end result is Canary Forest, a five song project that begins in the backyard of our Chillhop HQ and deepens down the creek, over the bridge, and into where the forest expands.',
 		},
 		{
@@ -106,7 +106,7 @@ function chillHop() {
 				bandcamp: 'https://chillhop.ffm.to/canaryforest.owe/bandcamp',
 				youtube: 'https://chillhop.ffm.to/canaryforest.owe/youtube',
 			},
-			aboutArtist:
+			aboutAlbum:
 				'At the beginning of the year, producers Aso, Aviino, and Middle School visited The Netherlands and created a number of songs while in Rotterdam. Some in our studio, others in the trio’s haunted houseboat hotel. The end result is Canary Forest, a five song project that begins in the backyard of our Chillhop HQ and deepens down the creek, over the bridge, and into where the forest expands.',
 		},
 	]
