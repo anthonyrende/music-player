@@ -65,23 +65,27 @@
 }
 .media-container {
 	width: 90%;
-	height: 50vh;
-	margin-top: 2rem;
-	display: flex;
+	height: 45vh;
+	margin-top: 0.9rem;
 	flex-direction: column;
 	padding: 1.5rem;
 	margin-right: 2rem;
+	overflow: hidden;
 	h2 {
 		text-align: center;
-		// padding-right: -5rem;
-		padding-top: 2rem;
-		// margin-bottom: -2rem;
+		padding: 2.5rem 1rem;
+		margin-bottom: -1.2rem;
+		color: rgb(34, 34, 34);
 	}
 	a {
 		// border: 2px solid red;
 		padding-top: 0.5rem;
 		flex-direction: column;
 		margin-top: 2rem;
+		img {
+			padding: 0.7rem 0.1rem;
+			margin-top: 0.5rem;
+		}
 		svg {
 			padding-left: 0.2rem;
 		}
@@ -98,4 +102,61 @@
 .active-info {
 	transform: translateX(0);
 	opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+	.artist-info-container {
+		z-index: 10;
+		width: 100%;
+		.artist-info {
+			padding-top: 5rem;
+			.close-info {
+				margin-left: 20rem;
+			}
+		}
+	}
+	.info-container {
+		p {
+			width: 130%;
+		}
+		h2 {
+			margin-left: 2.2rem;
+		}
+	}
+
+	.media-container {
+		flex-direction: row;
+		padding: 2rem;
+		/* width: 231%; */
+		height: 38vh;
+		/* margin: 3rem -20rem; */
+		/* overflow: auto; */
+
+		// .media-container {
+		// 	width: 90%;
+		// 	height: 50vh;
+		// 	margin-top: 2rem;
+		// 	/* display: flex; */
+		// 	flex-direction: column;
+		// 	padding: 1.5rem;
+		// 	margin-right: 2rem;
+		// }
+
+		h2 {
+			width: 90%;
+			margin-right: 10rem;
+			padding-bottom: 1.3rem;
+		}
+		a {
+			margin-top: 0.5rem;
+			img {
+				width: 50%;
+				padding: 1rem;
+				margin: 0.2 auto;
+			}
+			svg {
+				background-size: 10%;
+			}
+		}
+	}
 }

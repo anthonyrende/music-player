@@ -23,6 +23,7 @@ const Info = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
 					<p>{currentSong.aboutAlbum}</p>
 				</div>
 			</div>
+
 			<div className='media-container'>
 				<h2>Available On</h2>
 
