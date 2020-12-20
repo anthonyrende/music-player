@@ -1,3 +1,46 @@
+// referenced from https://codepen.io/srekoble/pen/WGBzZa?editors=1100
+@mixin truncate($rows, $line-height, $background: '') {
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s ease;
+	// max-height: $line-height * $rows;
+	// line-height: $line-height;
+	max-height: 67%;
+	height: 100%;
+	line-height: 1.2rem;
+
+	&:after {
+		content: '';
+		// position: absolute;
+		// right: 0;
+		// bottom: 0;
+		width: 1rem;
+		height: $line-height;
+		transition: all 1.5s ease;
+
+		@if $background != '' {
+			background: linear-gradient(
+				to right,
+				rgba($background, 0) 0%,
+				rgba($background, 1) 100%
+			);
+		}
+	}
+
+	// If supports line-clamp then add an ellipsis overflow and hide the gradient
+	// This will work in Chrome and Opera, otherwise a gradient will gradually hide the text.
+
+	@supports (-webkit-line-clamp: $rows) {
+		display: -webkit-box;
+		-webkit-line-clamp: $rows;
+		-webkit-box-orient: vertical;
+
+		&:after {
+			display: none;
+		}
+	}
+}
+
 .artist-info-container {
 	position: fixed;
 	top: 0;
@@ -18,8 +61,28 @@
 
 	.artist-info {
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
+		// flex-direction: column;
 		width: 100%;
+		a {
+			order: 3;
+			text-decoration: none;
+			color: #414141;
+			width: 100%;
+			// margin: 0.5rem 0;
+			padding-top: 0.7rem;
+			svg {
+				margin-left: 0.5rem;
+			}
+		}
+
+		p {
+			@include truncate(
+				3,
+				1.2rem,
+				#fff
+			); // rows, line-height, gradient fallback
+		}
 		.close-info {
 			margin-left: 15rem;
 			margin-bottom: -2.1rem;
@@ -41,12 +104,44 @@
 		}
 	}
 }
+.show-less {
+	display: none;
+	// overflow: scroll;
+
+	&:target {
+		display: block;
+		// border: 2px solid red;
+		~ p {
+			// display: block;
+			// overflow: scroll;
+			max-height: 200%;
+			height: 155%;
+			// border: 2px solid red;
+		}
+		.media-container {
+			display: none;
+		}
+
+		+ a {
+			display: none;
+		}
+	}
+}
+
+.more-button {
+	order: 3;
+}
+
 .info-container {
+	// > div {
+	// 	padding: 1rem;
+	// }
 	height: 46vh;
 	// border: 1px solid blue;
 	display: flex;
 	width: 17rem;
 	p {
+		order: 2;
 		padding-left: 2rem;
 		height: 40vh;
 		font-size: 0.99rem;
@@ -56,6 +151,7 @@
 		word-spacing: 0.1rem;
 	}
 	h2 {
+		order: 1;
 		width: 50%;
 		padding-top: 0.5rem;
 		padding-bottom: 2rem;
@@ -64,27 +160,49 @@
 	}
 }
 .media-container {
-	width: 90%;
-	height: 45vh;
-	margin-top: 0.9rem;
+	// order: 4;
+	// width: 90%;
+	// // height: 45vh;
+	// margin-top: 0.9rem;
+	// flex-direction: column;
+	// padding: 1.5rem;
+	// margin-right: 2rem;
+	// overflow: hidden;
+	order: 4;
+	width: 75%;
+
 	flex-direction: column;
-	padding: 1.5rem;
-	margin-right: 2rem;
+	// padding: 1.5rem;
+	// transition: all 2.5s ease;
 	overflow: hidden;
+	display: flex;
 	h2 {
-		text-align: center;
-		padding: 2.5rem 1rem;
-		margin-bottom: -1.2rem;
-		color: rgb(34, 34, 34);
+		// width: 100%;
+		// text-align: center;
+		// // padding: 2.5rem 1rem;
+		// margin-bottom: -1.2rem;
+		// color: rgb(34, 34, 34);
+		width: 100%;
+		// text-align: center;
+		margin-bottom: -0.5rem;
+		color: #222222;
+		margin-top: 1.5rem;
 	}
 	a {
 		// border: 2px solid red;
-		padding-top: 0.5rem;
+		// padding-top: 0.5rem;
+		// flex-direction: column;
+		// margin-top: 2rem;
+		padding: 0.6rem 1.5rem;
 		flex-direction: column;
-		margin-top: 2rem;
+		// margin-top: 2rem;
+		// border: 2px solid;
 		img {
-			padding: 0.7rem 0.1rem;
-			margin-top: 0.5rem;
+			// padding: 0.7rem 0.1rem;
+			// margin-top: 0.5rem;
+			width: auto;
+			max-width: 10rem;
+			margin-left: 1rem;
 		}
 		svg {
 			padding-left: 0.2rem;
@@ -99,6 +217,11 @@
 	}
 }
 
+.hide-media {
+	transition: display 1s ease;
+	display: none;
+	// transition: all 0.5s ease;
+}
 .active-info {
 	transform: translateX(0);
 	opacity: 1;
@@ -109,9 +232,10 @@
 		z-index: 10;
 		width: 100%;
 		.artist-info {
-			padding-top: 5rem;
+			// padding-top: 5rem;
 			.close-info {
-				margin-left: 20rem;
+				margin-left: 17rem;
+				margin-top: 0.5rem;
 			}
 		}
 	}
@@ -125,10 +249,17 @@
 	}
 
 	.media-container {
-		flex-direction: row;
-		padding: 2rem;
+		display: flex;
+		justify-content: space-evenly;
+		// flex-direction: row;
+		// padding: 2rem;
 		/* width: 231%; */
-		height: 38vh;
+		height: auto;
+		max-height: 100%;
+		overflow: visible;
+		width: 77%;
+		margin: -1rem;
+		margin-top: 0.8rem;
 		/* margin: 3rem -20rem; */
 		/* overflow: auto; */
 
@@ -149,14 +280,19 @@
 		}
 		a {
 			margin-top: 0.5rem;
+			margin-left: 4rem;
 			img {
-				width: 50%;
-				padding: 1rem;
+				// width: 50%;
+				// padding: 1rem;
 				margin: 0.2 auto;
 			}
 			svg {
 				background-size: 10%;
 			}
 		}
+	}
+	.hide-media {
+		display: none;
+		// transition: all 0.5s ease;
 	}
 }
