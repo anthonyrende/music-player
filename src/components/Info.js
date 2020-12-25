@@ -13,11 +13,13 @@ import Bandcamp from '../assets/media/bandcamp.svg'
 import Youtube from '../assets/media/youtube.svg'
 
 const Info = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
-	const [showMoreStatus, setShowMoreStatus] = useState(true)
+	const [showMoreStatus, setShowMoreStatus] = useState(false)
 
-	// const expandTextHandler = () => {
-	// 	setShowMoreStatus(!showMoreStatus)
+	// const handleTextExpand = () => {
+	// 	// setShowMoreStatus(!showMoreStatus)
+
 	// }
+	const showMoreOrLess = showMoreStatus ? 'Read Less' : 'Read More'
 	return (
 		<>
 			<div className='info-container'>
@@ -30,19 +32,26 @@ const Info = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
 					/>
 					<h2>Artist Info</h2>
 
-					<p>{currentSong.aboutAlbum}</p>
-					<div>
-						More
+					<p
+						className={`read-more-container ${
+							showMoreStatus ? 'expand-container' : 'read-more-container'
+						}`}
+					>
+						{currentSong.aboutAlbum}
+					</p>
+					<div
+						className='more-button'
+						onClick={() => setShowMoreStatus(!showMoreStatus)}
+					>
+						{showMoreOrLess}
 						<FontAwesomeIcon
-							className='more-button'
-							onClick={() => setShowMoreStatus(!showMoreStatus)}
-							icon={faLongArrowAltUp}
+							icon={showMoreStatus ? faLongArrowAltUp : faLongArrowAltDown}
 						/>
 					</div>
 
 					<div
 						className={`media-container ${
-							showMoreStatus ? 'media-container' : 'hide-media'
+							showMoreStatus ? 'hide-media' : 'media-container'
 						}`}
 					>
 						<h2>Available On</h2>
@@ -67,22 +76,3 @@ const Info = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
 }
 
 export default Info
-
-// <a
-// 	id='show-more'
-// 	class='show-less'
-// 	// href='#show-less'
-// 	onClick={() => setShowMoreStatus(!showMoreStatus)}
-// >
-// 	Read less
-// 	<FontAwesomeIcon icon={faLongArrowAltUp} />
-// </a>
-// <a
-// 	id='show-less'
-// 	class='show-more'
-// 	// href='#show-more'
-// 	onClick={() => setShowMoreStatus(!showMoreStatus)}
-// >
-// 	Read more
-// 	<FontAwesomeIcon icon={faLongArrowAltDown} />
-// </a>
