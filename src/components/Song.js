@@ -1,12 +1,18 @@
 import React from 'react'
 
-const Song = ({ currentSong, artistInfoStatus, setArtistInfoStatus }) => {
+const Song = ({
+	currentSong,
+	artistInfoStatus,
+	setArtistInfoStatus,
+	isPlaying,
+}) => {
 	const artistInfoHandler = () => {
 		setArtistInfoStatus(!artistInfoStatus)
 	}
 	return (
 		<div className='song-container'>
 			<img
+				className={`${isPlaying ? 'spin-img' : ''}`}
 				onClick={artistInfoHandler}
 				alt={currentSong.name}
 				src={currentSong.cover}

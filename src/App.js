@@ -67,6 +67,7 @@ function App() {
 		<div className={`App ${containerHandlers()}`}>
 			<Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
 			<Song
+				isPlaying={isPlaying}
 				currentSong={currentSong}
 				artistInfoStatus={artistInfoStatus}
 				setArtistInfoStatus={setArtistInfoStatus}

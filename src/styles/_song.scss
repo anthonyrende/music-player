@@ -13,19 +13,34 @@
 		transition: 0.2s ease-in;
 		cursor: pointer;
 		&:hover {
+			animation: none;
 			// width: 21%;
 			border-radius: 10%;
 			border: 2px solid rgb(0, 0, 0);
-			// transition: all 0.3s ease;
-			transition: 500ms ease-out;
+			transition: all 0.3s ease;
+			// transition: 500ms ease-out;
 			// transition: 0.2s ease-in;
 		}
 	}
+
+	.spin-img {
+		animation: rotation 6s infinite linear;
+	}
+
 	h2 {
 		padding: 3rem 1rem 1rem 1rem;
 	}
 	h3 {
 		font-size: 1rem;
+	}
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
 	}
 }
 
