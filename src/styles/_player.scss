@@ -33,7 +33,14 @@
 	svg {
 		cursor: pointer;
 		border-radius: 50%;
+		transition: all 0.4s ease;
 		// border: 5px solid green;
+		&:hover {
+			// background: rgba(65, 65, 65, 0.082);
+			transition: all 0.4s ease;
+			filter: brightness(40%) contrast(55%);
+			// font-size: 2.1rem;
+		}
 	}
 }
 // Slider stylez
@@ -43,20 +50,26 @@ input[type='range']:focus {
 
 input[type='range']::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	border: 0.1px solid #a5a4a4;
+	border: 1px solid #a5a4a4;
 	// border-top: none;
 	// border-left: none;
 	height: 1.5rem;
 	width: 1.5rem;
 	overflow: visible;
 	border-radius: 50%;
-	background-color: #bdd4e7;
+	background-color: #dbdbdb;
 	// background-image: linear-gradient(515deg, #7b88a0 0%, #bdd4e7 74%);
-	background-image: url(../sliderthumb.svg);
-
+	// background-image: url(../sliderthumb.svg);
+	transition: all 0.5s ease;
 	cursor: pointer;
 	margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
 	// box-shadow: 1px 1px 2px #000000, 0px 0px 0	.5px #0d0d0d; /* Add cool effects to your sliders! */
+	&:hover {
+		transition: all 0.2s ease;
+		background-color: #d4d4d4;
+		height: 1.6rem;
+		width: 1.6rem;
+	}
 }
 
 .track {
