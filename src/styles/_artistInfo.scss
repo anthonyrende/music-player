@@ -5,8 +5,8 @@
 	transition: all 0.5s ease;
 	// max-height: $line-height * $rows;
 	// line-height: $line-height;
-	max-height: 67%;
-	height: 100%;
+	max-height: 45%;
+	// height: 100%;
 	line-height: 1.2rem;
 
 	&:after {
@@ -94,9 +94,10 @@
 			); // rows, line-height, gradient fallback
 		}
 		.expand-container {
-			// border: 2px solid red;
-			max-height: 200%;
-			height: 150%;
+			max-height: 150%;
+			height: auto;
+			display: block;
+			overflow: auto;
 		}
 		.close-info {
 			margin-left: 15rem;
@@ -120,13 +121,6 @@
 	}
 }
 
-// .expand-container {
-// 	border: 2px solid red;
-// 	max-height: 100%;
-// }
-// .read-more-container {
-// 	border: 2px solid red;
-// }
 .show-less {
 	display: none;
 	// overflow: scroll;
