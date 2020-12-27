@@ -5,25 +5,19 @@ import styled from 'styled-components'
 import { ReactComponent as MoonIcon } from '../assets/icons/moon.svg'
 import { ReactComponent as SunIcon } from '../assets/icons/sun.svg'
 
-// const toggleTheme = () => {
-// 	if (theme === 'light') {
-// 		setTheme('dark')
-// 	} else {
-// 		setTheme('light')
-// 	}
-// }
 const ToggleContainer = styled.button`
-	position: relative;
+	position: absolute;
+	top: 1.8rem;
+	right: 24rem;
 	display: flex;
 	justify-content: space-between;
 	background: ${({ theme }) => theme.gradient};
-	width: 8rem;
-	height: 3.5rem;
-	/* margin: 0 auto; */
+	width: 5rem;
+	height: 2.5rem;
 	border-radius: 30px;
-	border: 2px solid ${({ theme }) => theme.toggleBorder};
+	border: 2px solid #fff;
 	font-size: 0.5rem;
-	padding: 0.5rem;
+	padding: 0.2rem;
 	overflow: hidden;
 	outline: none;
 	cursor: pointer;

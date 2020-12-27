@@ -14,7 +14,7 @@ nav {
 .library-button {
 	// background: transparent;
 	cursor: pointer;
-	color: black;
+	// color: black;
 	// border: 2px solid rgb(75, 75, 75);
 	padding: 0.5rem;
 	outline: none;
@@ -23,7 +23,7 @@ nav {
 		// transition: all 0.3s ease-out;
 		border: none;
 		border-radius: 15%;
-		color: rgb(65, 65, 65);
+		filter: brightness(150%) contrast(50%);
 	}
 }
 
@@ -31,7 +31,7 @@ nav {
 	background: transparent;
 	transition: transform 0.6s ease-in-out;
 	border: none;
-	color: rgb(65, 65, 65);
+	// color: rgb(65, 65, 65);
 	font-size: 2.1rem;
 	&:focus {
 		outline: none;
@@ -39,7 +39,8 @@ nav {
 	}
 	&:hover {
 		background: none;
-		color: black;
+		// transition: all 0.5s ease;
+		filter: brightness(150%) contrast(50%);
 		-webkit-transform: rotate(180deg);
 		transform: rotate(180deg);
 	}
