@@ -64,6 +64,9 @@ const Player = ({
 		audioRef.current.currentTime = e.target.value
 		setSongInfo({ ...songInfo, currentTime: e.target.value })
 	}
+	// const volumeHandler = (e) => {
+	// 	audioRef.cu
+	// }
 	const skipTrackHandler = async (direction) => {
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id)
 		if (direction === 'skip-forward') {
@@ -100,6 +103,7 @@ const Player = ({
 						min={0}
 						onChange={dragHandler}
 					/>
+
 					<div
 						// Animation slider percentage
 						style={{
@@ -139,3 +143,12 @@ const Player = ({
 }
 
 export default Player
+
+// <input
+// type='range'
+// min={0}
+// max={1}
+// step={0.02}
+// value={volume}
+// onChange={volumeHandler}
+// />

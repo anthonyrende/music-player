@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react'
 
 // Styles
 import './styles/app.scss'
+import { ThemeProvider } from 'styled-components'
+import { lightTheme, darkTheme } from './styles/theme/theme'
+import { GlobalStyles } from './styles/theme/global'
 
 // Components
 import Player from './components/Player'
@@ -13,6 +16,7 @@ import ArtistInfo from './components/ArtistInfo'
 // Util
 import data from './data.js'
 import { playAudio } from './util'
+import ThemeToggle from './components/ThemeToggle'
 
 function App() {
 	// Ref
@@ -28,6 +32,7 @@ function App() {
 	})
 	const [libraryStatus, setLibraryStatus] = useState(false)
 	const [artistInfoStatus, setArtistInfoStatus] = useState(false)
+	const [theme, setTheme] = useState('light')
 
 	// Util
 	const timeUpdateHandler = (e) => {
@@ -63,47 +68,63 @@ function App() {
 			return ''
 		}
 	}
+
+	const toggleTheme = () => {
+		if (theme === 'light') {
+			setTheme('dark')
+		} else {
+			setTheme('light')
+		}
+	}
 	return (
-		<div className={`App ${containerHandlers()}`}>
-			<Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
-			<Song
-				isPlaying={isPlaying}
-				currentSong={currentSong}
-				artistInfoStatus={artistInfoStatus}
-				setArtistInfoStatus={setArtistInfoStatus}
-			/>
-			<Player
-				setSongInfo={setSongInfo}
-				songInfo={songInfo}
-				audioRef={audioRef}
-				setIsPlaying={setIsPlaying}
-				isPlaying={isPlaying}
-				currentSong={currentSong}
-				songs={songs}
-				setSongs={setSongs}
-				setCurrentSong={setCurrentSong}
-			/>
-			<Library
-				audioRef={audioRef}
-				songs={songs}
-				setCurrentSong={setCurrentSong}
-				isPlaying={isPlaying}
-				setSongs={setSongs}
-				libraryStatus={libraryStatus}
-			/>
-			<ArtistInfo
-				artistInfoStatus={artistInfoStatus}
-				setArtistInfoStatus={setArtistInfoStatus}
-				currentSong={currentSong}
-			/>
-			<audio
-				onTimeUpdate={timeUpdateHandler}
-				onLoadedMetadata={timeUpdateHandler}
-				ref={audioRef}
-				src={currentSong.audio}
-				onEnded={songEndHandler}
-			></audio>
-		</div>
+		<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+			<GlobalStyles />
+			<div className={`App ${containerHandlers()}`}>
+				<Nav
+					theme={theme}
+					toggleTheme={toggleTheme}
+					libraryStatus={libraryStatus}
+					setLibraryStatus={setLibraryStatus}
+				/>
+				<Song
+					isPlaying={isPlaying}
+					currentSong={currentSong}
+					artistInfoStatus={artistInfoStatus}
+					setArtistInfoStatus={setArtistInfoStatus}
+				/>
+				<Player
+					setSongInfo={setSongInfo}
+					songInfo={songInfo}
+					audioRef={audioRef}
+					setIsPlaying={setIsPlaying}
+					isPlaying={isPlaying}
+					currentSong={currentSong}
+					songs={songs}
+					setSongs={setSongs}
+					setCurrentSong={setCurrentSong}
+				/>
+				<Library
+					audioRef={audioRef}
+					songs={songs}
+					setCurrentSong={setCurrentSong}
+					isPlaying={isPlaying}
+					setSongs={setSongs}
+					libraryStatus={libraryStatus}
+				/>
+				<ArtistInfo
+					artistInfoStatus={artistInfoStatus}
+					setArtistInfoStatus={setArtistInfoStatus}
+					currentSong={currentSong}
+				/>
+				<audio
+					onTimeUpdate={timeUpdateHandler}
+					onLoadedMetadata={timeUpdateHandler}
+					ref={audioRef}
+					src={currentSong.audio}
+					onEnded={songEndHandler}
+				></audio>
+			</div>
+		</ThemeProvider>
 	)
 }
 

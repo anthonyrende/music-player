@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMusic, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-const Nav = ({ libraryStatus, setLibraryStatus }) => {
+import ThemeToggle from './ThemeToggle'
+
+const Nav = ({ libraryStatus, setLibraryStatus, theme, toggleTheme }) => {
 	const [toggleButton, setToggleButton] = useState(true)
 
 	const isActive = () => {
@@ -13,6 +16,7 @@ const Nav = ({ libraryStatus, setLibraryStatus }) => {
 	return (
 		<nav>
 			<h1>Chill Hop Player</h1>
+			<ThemeToggle theme={theme} toggleTheme={toggleTheme} />
 			{toggleButton ? (
 				<button className='library-button' onClick={isActive}>
 					Library
