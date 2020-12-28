@@ -15,8 +15,13 @@ const Nav = ({ libraryStatus, setLibraryStatus, theme, toggleTheme }) => {
 
 	return (
 		<nav>
-			<h1>Chill Hop Player</h1>
-			<ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+			<ThemeToggle
+				className='themeToggle'
+				theme={theme}
+				toggleTheme={toggleTheme}
+				libraryStatus={libraryStatus}
+			/>
+			<h1 className='title'>Chill Hop Player</h1>
 			{toggleButton ? (
 				<button className='library-button' onClick={isActive}>
 					Library

@@ -69,4 +69,11 @@
 	.library {
 		width: 100%;
 	}
+	.active-library {
+		transform: translateX(0);
+		opacity: 1;
+		.title {
+			opacity: 0;
+		}
+	}
 }

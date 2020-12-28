@@ -21,9 +21,36 @@ h4 {
 }
 .library-active {
 	margin-left: 15rem;
+
+	@media screen and (max-width: 768px) {
+		.song-container {
+			opacity: 0;
+		}
+		h1.title {
+			opacity: 0;
+		}
+		.player {
+			opacity: 0;
+		}
+	}
 }
+
 .info-active {
 	margin-right: 15rem;
+	@media screen and (max-width: 768px) {
+		.song-container {
+			opacity: 0;
+		}
+		h1.title {
+			opacity: 0;
+		}
+		.player {
+			opacity: 0;
+		}
+		.library-button {
+			opacity: 0;
+		}
+	}
 }
 
 .library-and-info-active {
@@ -32,6 +59,17 @@ h4 {
 	transition: all 0.5s ease;
 	// max-height: 5vh;
 	margin: 0rem 10rem 0rem 10rem;
+	@media screen and (max-width: 768px) {
+		.song-container {
+			opacity: 0;
+		}
+		h1.title {
+			opacity: 0;
+		}
+		.player {
+			opacity: 0;
+		}
+	}
 }
 
 @import './song';

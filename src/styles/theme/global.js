@@ -4,17 +4,16 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-  *,
-  *::after,
-  *::before {
-    box-sizing: border-box;
-  }
+  // *,
+  // *::after,
+  // *::before {
+  //   box-sizing: border-box;
+  // }
 
   body {
     // align-items: center;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    // h1: ${({ theme }) => theme.h1};
     // display: flex;
     // flex-direction: column;
     // justify-content: center;

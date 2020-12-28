@@ -34,12 +34,17 @@ const ToggleContainer = styled.button`
 				lightTheme ? 'translateY(-100px)' : 'translateY(0)'};
 		}
 	}
+	@media screen and (max-width: 768px) {
+		position: inherit;
+	}
 `
 
-const ThemeToggle = ({ theme, toggleTheme }) => {
+const ThemeToggle = ({ theme, toggleTheme, libraryStatus }) => {
 	const isLight = theme === 'light'
 
-	return (
+	return libraryStatus ? (
+		''
+	) : (
 		<ToggleContainer lightTheme={isLight} onClick={toggleTheme}>
 			<SunIcon />
 			<MoonIcon />
