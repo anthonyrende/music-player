@@ -6,10 +6,12 @@ import { ReactComponent as MoonIcon } from '../assets/icons/moon.svg'
 import { ReactComponent as SunIcon } from '../assets/icons/sun.svg'
 
 const ToggleContainer = styled.button`
-	position: absolute;
-	top: 1.8rem;
-	right: 24rem;
+	/* position: absolute; */
+	position: relative;
+	/* top: 1.8rem;
+	right: 24rem; */
 	display: flex;
+	/* align-content:  */
 	justify-content: space-between;
 	background: ${({ theme }) => theme.gradient};
 	width: 5rem;
