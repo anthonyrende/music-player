@@ -18,23 +18,8 @@ const Player = ({
 	songs,
 	setSongs,
 	setCurrentSong,
+	activeLibraryHandler,
 }) => {
-	const activeLibraryHandler = (nextOrPrev) => {
-		const newSongs = songs.map((song) => {
-			if (song.id === nextOrPrev.id) {
-				return {
-					...song,
-					active: true,
-				}
-			} else {
-				return {
-					...song,
-					active: false,
-				}
-			}
-		})
-	}
-
 	// Play once audio is loaded
 	if (isPlaying) {
 		const playPromise = audioRef.current.play()
